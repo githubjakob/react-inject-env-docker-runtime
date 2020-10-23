@@ -13,8 +13,8 @@ This js `env_vars.js` is created when the docker container is starting up, using
 To try it out clone the project and build the docker image.
 
 ```
-git clone ..
-cd 
+git clone git://github.com/githubjakob/react-inject-env-docker-runtime
+cd react-inject-env-docker-runtime
 ```
 
 Then build the docker image:
