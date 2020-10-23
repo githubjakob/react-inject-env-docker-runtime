@@ -31,4 +31,4 @@ docker run -d -p 8081:8080 -e API_URL=test.myapp.com docker-inject-env-react-run
 docker run -d -p 8082:8080 -e API_URL=prod.myapp.com docker-inject-env-react-runtime
 ```
 
-Navigate to localhost:8001 and localhost:8002 respectively to see the different Urls in the different containers.
+Navigate to http://localhost:8081/ and http://localhost:8082/ respectively to see the different Urls in the different containers.
