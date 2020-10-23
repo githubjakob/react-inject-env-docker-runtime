@@ -1,21 +1,34 @@
 # docker-inject-env-react-runtime
 
-A common pattern for hosting React applications is to bundle them in a Docker container which then is deployed in a Kubernetes cluster.
+Small sample project that shows how to inject a environment variable (e.g. for a API Url) into a dockerized React application.
 
-In a setup where you have multiple cluster environments, e.g. a test, a staging and a production environment, each containing its own backend and frontend application running on different hosts, you need to pass 
+As opposed to baking the environment varibale into the docker image during the docker build, this approach allows you to have just one docker image that can be deployed to different environments (e.g. staging and prod). 
 
-Since a React application is just static JavaScript running in the clients browsers, one way would be to inject the different parameters into the Docker image when building the container. 
+The trick here is to set the varible on the global window object in a small JavaScript file `env_vars.js` embedded in the html.
 
+This js `env_vars.js` is created when the docker container is starting up, using a little bash script `docker-entrypoint.sh` that reads the environment variables passed to the docker container.
 
+## Try it out
 
-The React documentation gives a hint how to do this https://create-react-app.dev/docs/title-and-meta-tags/#injecting-data-from-the-server-into-the-page
+To try it out clone the project and build the docker image.
 
+```
+git clone ..
+cd 
+```
 
+Then build the docker image:
 
-
-
+```
 docker build -t docker-inject-env-react-runtime .
+```
 
-docker run -d -p 8080:8080 -e STRIPE_PUBLISHABLE_KEY=my_test_key docker-inject-env-react-runtime
+On startup, you can inject environment variables into the docker container, which is then picked up by the React app:
 
-docker run -d -p 8080:8080 -e STRIPE_PUBLISHABLE_KEY=my_prod_key docker-inject-env-react-runtime
+```
+docker run -d -p 8081:8080 -e API_URL=test.myapp.com docker-inject-env-react-runtime
+
+docker run -d -p 8082:8080 -e API_URL=prod.myapp.com docker-inject-env-react-runtime
+```
+
+Navigate to localhost:8001 and localhost:8002 respectively to see the different Urls in the different containers.

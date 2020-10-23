@@ -2,16 +2,16 @@ import React from 'react';
 
 declare global {
   interface Window {
-    STRIPE_PUBLISHABLE_KEY: string;
+    API_URL: string;
   }
 }
 
-const stripeKey = window.STRIPE_PUBLISHABLE_KEY
+const apiUrl = window.API_URL
 
 function App() {
   return (
     <div>
-      <p>StripeKey: {stripeKey}</p>
+      <p>ApiUrl: {apiUrl}</p>
     </div>
   );
 }

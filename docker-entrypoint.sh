@@ -7,7 +7,7 @@ set -o nounset
 ## The output of this is script is appended to /public/env_vars.js which is made accessible to typescript via index.html
 
 cat <<EOF > /usr/src/app/build/env_vars.js
-window.STRIPE_PUBLISHABLE_KEY="$STRIPE_PUBLISHABLE_KEY";
+window.API_URL="$API_URL";
 EOF
 
 serve -s ./build/ -l 8080
