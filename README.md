@@ -2,9 +2,9 @@
 
 Small sample project that shows how to inject a environment variable (e.g. for a API Url) into a dockerized React application.
 
-As opposed to baking the environment varibale into the docker image during the docker build, this approach allows you to have just one docker image that can be deployed to different environments (e.g. staging and prod). 
+As opposed to baking the environment variable into the docker image during the docker build, this approach allows you to have just one docker image that can be deployed to different environments (e.g. staging and prod). 
 
-The trick here is to set the varible on the global window object in a small JavaScript file `env_vars.js` embedded in the html.
+The trick here is to set the variable on the global window object in a small JavaScript file `env_vars.js` embedded in the html.
 
 This js `env_vars.js` is created when the docker container is starting up, using a little bash script `docker-entrypoint.sh` that reads the environment variables passed to the docker container.
 
